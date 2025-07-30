@@ -1,90 +1,48 @@
 ````markdown
-# ✅ FastAPI To-Do Application with SQL Database
+# 🚧 This branch is still under development
 
-This is a lightweight and efficient **To-Do API** built using **FastAPI** and **SQLAlchemy**, designed to manage tasks with features like prioritization, completion tracking, and detailed descriptions.
+# FastAPI To-Do Application (Under Development)
 
----
+A boilerplate FastAPI application to manage a To‑Do list, using **SQLAlchemy** for SQL database integration. You can use this project as a starting point for building CRUD APIs backed by a relational database.
 
-## 📌 Features
+## Getting Started
 
-- 📝 Create, Read, Update, and Delete (CRUD) tasks
-- 🔢 Set task priority
-- 📄 Include detailed descriptions
-- ✅ Mark tasks as complete/incomplete
-- 🔍 Retrieve all tasks or filtered views (e.g., completed only)
-- 💾 Uses a relational SQL database (e.g., SQLite/PostgreSQL)
+This project includes a basic FastAPI setup with a To‑Do schema, endpoints to create/read/update/delete tasks, and SQL operations using SQLAlchemy models. It’s ideal for bootstrapping a REST API project with a clean and extensible structure.
 
----
+By using this boilerplate as a standard initializer, you maintain consistent patterns across API projects, reduce setup time, and avoid repetitive boilerplate coding.
 
-## 🛠️ Tech Stack
+## How to Use
 
-- **Python 3.10+**
-- **FastAPI** — modern, high-performance web framework
-- **SQLAlchemy** — ORM for database interaction
-- **Pydantic** — data validation and parsing
-- **Uvicorn** — ASGI server for running FastAPI
-- **SQLite** (or any SQL database of your choice)
-
----
-
-## 🧱 Database Schema
-
-```python
-class Todos(Base):
-    __tablename__ = 'todos'
-
-    id = Column(Integer, primary_key=True, index=True)
-    title = Column(String)
-    description = Column(String)
-    priority = Column(Integer)
-    complete = Column(Boolean, default=False)
-````
-
-### 🔹 Field Details:
-
-| Field         | Type    | Description                      |
-| ------------- | ------- | -------------------------------- |
-| `id`          | Integer | Unique identifier for each task  |
-| `title`       | String  | Short title of the task          |
-| `description` | String  | Detailed explanation of the task |
-| `priority`    | Integer | Priority level (e.g., 1 = High)  |
-| `complete`    | Boolean | Status of the task (True/False)  |
-
----
-
-## 📦 Installation & Setup
-
-### 1. Clone the repository
+**Step 1: Clone the repository**
 
 ```bash
 git clone https://github.com/FarhanRiaaz/fastAPI-todos-app.git
 cd fastAPI-todos-app
-```
+````
 
-### 2. Create a virtual environment (recommended)
+**Step 2: Set up virtual environment**
 
 ```bash
 python -m venv venv
-source venv/bin/activate   # On Windows: venv\Scripts\activate
+source venv/bin/activate    # On Windows: venv\Scripts\activate
 ```
 
-### 3. Install dependencies
+**Step 3: Install required dependencies**
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Initialize the database
+**Step 4: Initialize the database**
 
-Ensure SQLAlchemy is configured properly. You can create the tables using:
+Make sure your `database.py` is configured with the appropriate engine (e.g., SQLite or PostgreSQL), then create tables using:
 
 ```python
+from DataLayer.database import Base, engine
 Base.metadata.create_all(bind=engine)
 ```
 
-Or through a migration tool like Alembic.
-
-### 5. Run the app
+**Step 5: Run the application**
 
 ```bash
 uvicorn main:app --reload
@@ -92,54 +50,70 @@ uvicorn main:app --reload
 
 ---
 
-## 🌐 API Endpoints (Examples)
+## API Overview
 
-| Method   | Endpoint      | Description             |
-| -------- | ------------- | ----------------------- |
-| `GET`    | `/todos`      | Get all tasks           |
-| `GET`    | `/todos/{id}` | Get task by ID          |
-| `POST`   | `/todos`      | Create a new task       |
-| `PUT`    | `/todos/{id}` | Update an existing task |
-| `DELETE` | `/todos/{id}` | Delete a task by ID     |
+The To‑Do API supports the following operations on the `todos` table:
 
----
+### Database Schema
 
-## 🧠 What You'll Learn
+```python
+class Todos(Base):
+    __tablename__ = 'todos'
+    id          = Column(Integer, primary_key=True, index=True)
+    title       = Column(String)
+    description = Column(String)
+    priority    = Column(Integer)
+    complete    = Column(Boolean, default=False)
+```
 
-* How to build RESTful APIs using FastAPI
-* Structuring a modern Python project
-* Working with relational databases via SQLAlchemy
-* Handling validation with Pydantic
-* Running async-ready servers with Uvicorn
+### Endpoints
 
----
-
-## 🚧 Roadmap / Next Steps
-
-* [ ] Add JWT-based user authentication
-* [ ] Support filtering: by priority, complete/incomplete
-* [ ] Docker support for containerized deployment
-* [ ] Add unit testing with `pytest`
-* [ ] Basic frontend UI (React, Flutter, or HTMX)
+| Method   | Endpoint      | Description                  |
+| -------- | ------------- | ---------------------------- |
+| `GET`    | `/todos`      | Retrieve all tasks           |
+| `GET`    | `/todos/{id}` | Retrieve a single task by ID |
+| `POST`   | `/todos`      | Create a new task            |
+| `PUT`    | `/todos/{id}` | Update an existing task      |
+| `DELETE` | `/todos/{id}` | Delete a task by ID          |
 
 ---
 
-## 🙌 Contributing
+## What’s Included (Features)
 
-Pull requests and issues are welcome!
-Feel free to fork this project and enhance it.
-
----
-
-## 👨‍💻 Author
-
-**Farhan Riaaz**
-🔗 [GitHub](https://github.com/FarhanRiaaz)
+* ✅ CRUD operations on To‑Do tasks
+* 🔢 Priority field to mark task importance
+* ✅ Mark tasks as complete/incomplete
+* 🧩 SQL database support (via SQLAlchemy)
+* ✅ Ready to be extended with user auth, pagination, filtering, etc.
 
 ---
 
-## 📃 License
+## Roadmap & Next‑Steps
 
-This project is licensed under the **MIT License**.
+Upcoming enhancements:
 
-````
+* [ ] JWT authentication
+* [ ] Filtering and pagination (e.g., by priority or completion status)
+* [ ] Docker container support (Dockerfile, `docker-compose`)
+* [ ] Unit tests with `pytest`
+* [ ] Frontend UI integration (React, Flutter, or HTMX)
+
+---
+
+## Contributing
+
+Contributions, issues, and feature requests are welcome!
+Feel free to fork the repo and submit a pull request to enhance or extend the app.
+
+---
+
+## Author
+
+**Farhan Riaaz** —
+🔗 GitHub: [https://github.com/FarhanRiaaz](https://github.com/FarhanRiaaz)
+
+---
+
+## License
+
+This project is licensed under [MIT License](LICENSE).
