@@ -1,4 +1,3 @@
-````markdown
 # 🚧 This branch is still under development
 
 # FastAPI To-Do Application (Under Development)
