@@ -1,8 +1,3 @@
-Great! Here's your complete `README.md` file for the **FastAPI To-Do App**, tailored with your GitHub repo link:
-**`https://github.com/FarhanRiaaz/fastAPI-todos-app.git`**
-
----
-
 ````markdown
 # ✅ FastAPI To-Do Application with SQL Database
 
