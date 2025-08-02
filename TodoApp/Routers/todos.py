@@ -5,9 +5,13 @@ from starlette import status
 from typing import Annotated
 from sqlalchemy.orm import Session
 from Database.database import SessionLocal
+from .auth import get_current_user
 
 
-router = APIRouter()
+router = APIRouter(
+      prefix='/todo',
+    tags=['todos']
+)
 def get_db():
     db = SessionLocal()
     try:
@@ -16,6 +20,7 @@ def get_db():
         db.close()
         
 database_injection = Annotated[Session,Depends(get_db)]
+user_dependency = Annotated[dict,Depends(get_current_user)]
 
 @router.get("/",status_code= status.HTTP_200_OK)
 async def read_all(db: database_injection):
@@ -30,8 +35,10 @@ async def read_todo(db: database_injection, todo_id: int = Path(gt=0)):
         raise HTTPException(status_code=404,detail='Todo item not found!')
     
 @router.post("/todo",status_code=status.HTTP_201_CREATED)
-async def add_todo(db: database_injection,todo_request: TodoRequest):
-    todo_model= Todos(**todo_request.model_dump())
+async def add_todo(db: database_injection,user: user_dependency,todo_request: TodoRequest):
+    if user is None:
+        raise HTTPException(status_code=401,detail='Authentication Failed!')
+    todo_model= Todos(**todo_request.model_dump(),owner_id = user.get('id'))
     db.add(todo_model)
     db.commit()
     
