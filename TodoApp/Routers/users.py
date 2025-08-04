@@ -42,8 +42,8 @@ async def update_password(db:database_injection,user:user_dependency,user_verifi
         db.add(current_user)
         db.commit()
 
-@router.put("/update_phone",status_code=status.HTTP_204_NO_CONTENT)
-async def update_password(db:database_injection,user:user_dependency,phone_number: str):
+@router.put("/update_phone/{phone_number}",status_code=status.HTTP_204_NO_CONTENT)
+async def update_phone(db:database_injection,user:user_dependency,phone_number: str):
     if user is None:
         raise HTTPException(status_code=401,detail='Authentication Failed!')
     current_user = db.query(Users).filter(Users.id == user.get('id')).first()
