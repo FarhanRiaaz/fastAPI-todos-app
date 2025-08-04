@@ -68,6 +68,7 @@ async def create_user(db: database_injection, create_user_request: CreateUserReq
         first_name = create_user_request.first_name,
         last_name = create_user_request.last_name,
         role = create_user_request.role,
+        phone_number= create_user_request.phone_number,
         #we have to hash the password
         #hashed_password = create_user_request.password,
         hashed_password = brcypt_context.hash(create_user_request.password),
