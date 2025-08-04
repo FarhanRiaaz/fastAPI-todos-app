@@ -5,7 +5,7 @@ from Model.models import Users
 from sqlalchemy.orm import Session
 from passlib.context import CryptContext
 from RequestModel.user_verification_request import UserVerification
-from .auth import get_current_user,authenticate_user
+from .auth import get_current_user
 
 from Database.database import SessionLocal
 
