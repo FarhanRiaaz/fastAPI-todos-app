@@ -1,12 +1,12 @@
 from fastapi import FastAPI
-from Model import models
-
-from Database.database import engine, SessionLocal
+from .models import Base
+from .database import engine, SessionLocal
 # this line will import the routers from there
-from Routers import auth,todos,users
+from .routers import auth,todos,users
 app = FastAPI()
  
-models.Base.metadata.create_all(bind=engine)
+
+Base.metadata.create_all(bind=engine)
 #this is the health check to check if the app work or not
 @app.get("/healthy")
 def health_check():

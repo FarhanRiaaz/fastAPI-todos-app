@@ -1,15 +1,15 @@
 from datetime import datetime, timedelta, timezone
 from typing import Annotated
 from fastapi import APIRouter, Depends,HTTPException
-from RequestModel.user_request import CreateUserRequest
+from ..user_request import CreateUserRequest
 from sqlalchemy.orm import Session
-from Model.models import Users
+from ..models import Users
 from starlette import status
-from Database.database import SessionLocal
+from ..database import SessionLocal
 from passlib.context import CryptContext
 from fastapi.security import OAuth2PasswordRequestForm,OAuth2PasswordBearer
 from jose import jwt,JWTError
-from ResponseModel.token import Token
+from ..token import Token
 
 router = APIRouter(
     prefix='/auth',

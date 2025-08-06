@@ -1,13 +1,12 @@
 from typing import Annotated
 from fastapi import APIRouter, Depends,HTTPException
 from starlette import status
-from Model.models import Users
+from ..models import Users
 from sqlalchemy.orm import Session
 from passlib.context import CryptContext
-from RequestModel.user_verification_request import UserVerification
+from ..user_verification_request import UserVerification
 from .auth import get_current_user
-
-from Database.database import SessionLocal
+from ..database import SessionLocal
 
 router = APIRouter(
     prefix='/user',
