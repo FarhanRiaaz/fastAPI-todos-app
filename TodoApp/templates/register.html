@@ -4,7 +4,7 @@
         <link rel="stylesheet" type="text/css" href="{{ url_for ('static', path ='/css/base.css')}}">
          <link rel="stylesheet" type="text/css" href="{{ url_for ('static', path ='/css/bootstrap.css')}}">
         <meta charset="UTF-8">
-        <title>TODO App</title>
+        <title>Todo App</title>
     </head>
      <body>
       <di class="container">
@@ -14,7 +14,7 @@
 </div>
 <div class="card-body">
     <form id="registerForm">
-   
+ <div class="form-row">  
 <div class="form-group col-md-6">
     <label>Email</label>
     <input type="email" class="form-control" name="email" autocomplete="email" required>
@@ -23,7 +23,8 @@
     <label>First Name</label>
     <input type="text" class="form-control" name="firstname" autocomplete="first-name" required>
 </div>
-
+</div>
+<div class="form-row">
 <div class="form-group col-md-6">
     <label>Last Name</label>
     <input type="text" class="form-control" name="lastname" autocomplete="last-name" required>
@@ -32,15 +33,9 @@
     <label>Username</label>
     <input type="text" class="form-control" name="username" autocomplete="username" required>
 </div>
-<div class="form-group col-md-6">
-        <label>Password</label>
-    <input type="password" class="form-control" name="password" autocomplete="current-password" required>
 </div>
-<div class="form-group col-md-6">
-        <label>Verify Password</label>
-    <input type="password" class="form-control" name="password2" autocomplete="current-password" required>
-</div>
- <div class="form-group col-md-6">
+<div class="form-row">
+    <div class="form-group col-md-6">
     <label>Phone number</label>
     <input type="number" class="form-control" name="phonenumber" autocomplete="phone-number" required>
 </div>
@@ -48,6 +43,16 @@
     <label>Role</label>
     <input type="text" class="form-control" name="role" autocomplete="job-role" required>
 </div>
+</div>
+<div class="form-group">
+        <label>Password</label>
+    <input type="password" class="form-control" name="password" autocomplete="current-password" required>
+</div>
+<div class="form-group">
+        <label>Verify Password</label>
+    <input type="password" class="form-control" name="password2" autocomplete="current-password" required>
+</div>
+
 <button type="submit" class="btn btn-primary">Sign Up</button>
     </form>
 </div>
