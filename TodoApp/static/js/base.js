@@ -191,7 +191,7 @@
             };
 
             try {
-                const response = await fetch('/auth', {
+                const response = await fetch('/auth/add_user', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
