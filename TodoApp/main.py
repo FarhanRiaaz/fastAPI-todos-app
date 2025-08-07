@@ -3,7 +3,7 @@ from .models import Base
 from .database import engine, SessionLocal
 from fastapi.staticfiles import StaticFiles
 # this line will import the routers from there
-from TodoApp.routers import auth,todos,users
+from .routers import auth,todos,users
 from fastapi.responses import RedirectResponse
 
 app = FastAPI()
