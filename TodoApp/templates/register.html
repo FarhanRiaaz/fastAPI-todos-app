@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" type="text/css" href="{{ url_for ('static', path ='/css/base.css')}}">
+         <link rel="stylesheet" type="text/css" href="{{ url_for ('static', path ='/css/bootstrap.css')}}">
+        <meta charset="UTF-8">
+        <title>TODO App</title>
+    </head>
+     <body>
+      <di class="container">
+<div class="card">
+<div class="card-header">
+    Register Account
+</div>
+<div class="card-body">
+    <form id="registerForm">
+   
+<div class="form-group">
+    <label>Email</label>
+    <input type="email" class="form-control" name="email" autocomplete="email" required>
+</div>
+<div class="form-group">
+    <label>First Name</label>
+    <input type="text" class="form-control" name="firstname" autocomplete="first-name" required>
+</div>
+
+<div class="form-group">
+    <label>Last Name</label>
+    <input type="text" class="form-control" name="lastname" autocomplete="last-name" required>
+</div>
+ <div class="form-group">
+    <label>Username</label>
+    <input type="text" class="form-control" name="username" autocomplete="username" required>
+</div>
+<div class="form-group">
+        <label>Password</label>
+    <input type="password" class="form-control" name="password" autocomplete="current-password" required>
+</div>
+ <div class="form-group">
+    <label>Phonenumber</label>
+    <input type="number" class="form-control" name="phonenumber" autocomplete="phone-number" required>
+</div>
+ <div class="form-group">
+    <label>Role</label>
+    <input type="text" class="form-control" name="role" autocomplete="job-role" required>
+</div>
+<button type="submit" class="btn btn-primary">Sign Up</button>
+    </form>
+</div>
+<div class="card-footer text-muted">
+    <a href="/auth/login-page"> Already have an account? Login now!</a>
+</div>
+</div>
+      </div>  
+    </body>
+</html>

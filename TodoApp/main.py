@@ -2,6 +2,7 @@ from fastapi import FastAPI, Request
 from .models import Base
 from .database import engine, SessionLocal
 from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
 # this line will import the routers from there
 from .routers import auth,todos,users
 app = FastAPI()
@@ -9,6 +10,8 @@ app = FastAPI()
 
 Base.metadata.create_all(bind=engine)
 templates = Jinja2Templates(directory='TodoApp/templates')
+
+app.mount("/static",StaticFiles(directory="TodoApp/static"),name="static")
 
 @app.get("/")
 def test(request: Request):

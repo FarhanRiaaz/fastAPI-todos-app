@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta, timezone
 from typing import Annotated
-from fastapi import APIRouter, Depends,HTTPException
+from fastapi import APIRouter, Depends,HTTPException, Request
 from ..user_request import CreateUserRequest
 from sqlalchemy.orm import Session
 from ..models import Users
@@ -10,6 +10,7 @@ from passlib.context import CryptContext
 from fastapi.security import OAuth2PasswordRequestForm,OAuth2PasswordBearer
 from jose import jwt,JWTError
 from ..token import Token
+from fastapi.templating import Jinja2Templates
 
 router = APIRouter(
     prefix='/auth',
@@ -30,7 +31,17 @@ def get_db():
         db.close()
         
 database_injection = Annotated[Session,Depends(get_db)]
+templates = Jinja2Templates(directory='TodoApp/templates')
+### PAGES ###
+@router.get("/login-page")
+def render_login_page(request: Request):
+    return templates.TemplateResponse("login.html",{"request":request})
 
+@router.get("/register-page")
+def render_register_page(request: Request):
+    return templates.TemplateResponse("register.html",{"request":request})
+
+### ENDPOINTS ###
 def authenticate_user(username: str, passowrd: str,db):
     user = db.query(Users).filter(Users.username == username).first()
     if not user:
@@ -54,11 +65,7 @@ async def get_current_user(token: Annotated[str,Depends(oauth2_bearer)]):
             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail='Couldnot validate credentails')
         return {'username':username,'id':user_id}
     except JWTError:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail='Couldnot validate credentails')
-
-        
-    
-        
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail='Couldnot validate credentails')      
 
 @router.post("/add_user",status_code=status.HTTP_201_CREATED)
 async def create_user(db: database_injection, create_user_request: CreateUserRequest):
