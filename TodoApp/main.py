@@ -1,21 +1,20 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, status
 from .models import Base
 from .database import engine, SessionLocal
-from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 # this line will import the routers from there
 from .routers import auth,todos,users
+from fastapi.responses import RedirectResponse
 app = FastAPI()
  
 
 Base.metadata.create_all(bind=engine)
-templates = Jinja2Templates(directory='TodoApp/templates')
 
 app.mount("/static",StaticFiles(directory="TodoApp/static"),name="static")
 
 @app.get("/")
 def test(request: Request):
-    return templates.TemplateResponse("home.html",{"request":request})
+    return RedirectResponse(url="/todo/todo-page",status_code=status.HTTP_302_FOUND)
 
 #this is the health check to check if the app work or not
 @app.get("/healthy")
