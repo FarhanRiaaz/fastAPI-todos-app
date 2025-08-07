@@ -66,7 +66,7 @@
 
             console.log(`${todoId}`)
 
-            const response = await fetch(`/todos/todo/${todoId}`, {
+            const response = await fetch(`/todo/todo/${todoId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -76,7 +76,7 @@
             });
 
             if (response.ok) {
-                window.location.href = '/todos/todo-page'; // Redirect to the todo page
+                window.location.href = '/todo/todo-page'; // Redirect to the todo page
             } else {
                 // Handle error
                 const errorData = await response.json();
@@ -98,7 +98,7 @@
                     throw new Error('Authentication token not found');
                 }
 
-                const response = await fetch(`/todos/todo/${todoId}`, {
+                const response = await fetch(`/todo/todo/${todoId}`, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': `Bearer ${token}`
@@ -107,7 +107,7 @@
 
                 if (response.ok) {
                     // Handle success
-                    window.location.href = '/todos/todo-page'; // Redirect to the todo page
+                    window.location.href = '/todo/todo-page'; // Redirect to the todo page
                 } else {
                     // Handle error
                     const errorData = await response.json();
