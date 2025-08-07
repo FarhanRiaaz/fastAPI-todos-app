@@ -7,7 +7,6 @@ from fastapi.responses import RedirectResponse
 
 app = FastAPI()
 
-
 Base.metadata.create_all(bind=engine)
 
 app.mount("/static",StaticFiles(directory="TodoApp/static"),name="static")
